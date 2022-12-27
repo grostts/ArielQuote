@@ -113,8 +113,63 @@ def create_new_quote():
     end_user.send_keys(end_user_name)
     driver.implicitly_wait(20)
     # -----------------------------------------------------------------------------------------------------------------
-    # choose your country
-    print('Choose the country.')
+    print('Choose the country from the list:')
+    country_dict = {'A': ['Afghanistan', 'Albania', 'Algeria', 'Amer.Virgin Is.', 'Andorran', 'Angola', 'Anguilla',
+                          'Antarctica', 'Antigua/Barbuda', 'Argentina', 'Armenia', 'Aruba', 'Australia', 'Austria',
+                          'Azerbaijan'],
+                    'B': ['Bahamas', 'Bahrain', 'Bangladesh', 'Barbados', 'Belarus', 'Belgium', 'Belize', 'Benin',
+                          'Bermuda', 'Bhutan', 'Blue', 'Bolivia', 'Bosnia-Herz.', 'Botswana', 'Bouvet Islands',
+                          'Brazil', 'Brit.Ind.Oc.Ter', 'Brit.Virgin Is.', 'Brunei Daruss.', 'Bulgaria', 'Burkina Faso',
+                          'Burma', 'Burundi'],
+                    'C': ['Cambodia', 'Cameroon', 'Canada', 'Cape Verde', 'CAR', 'Cayman Islands', 'Chad', 'Chile',
+                          'China', 'Christmas Islnd', 'Coconut Islands', 'Colombia', 'Comoros', 'Cook Islands',
+                          'Costa Rica', "Cote d'Ivoire", 'Croatia', 'Cuba', 'Cyprus', 'Czech Republic'],
+                    'D': ['Dem. Rep. Congo', 'Denmark', 'Djibouti', 'Dominica', 'Dominican Rep.', 'Dutch Antilles'],
+                    'E': ['East Timor', 'East Timor', 'Ecuador', 'Egypt', 'El Salvador', 'Equatorial Guin', 'Eritrea',
+                          'Estonia', 'Ethiopia', 'European Union'],
+                    'F': ['Falkland Islnds', 'Faroe Islands', 'Fiji', 'Finland', 'France', 'Frenc.Polynesia',
+                          'French Guayana', 'French S.Territ'],
+                    'G': ['Gabon', 'Gambia', 'Georgia', 'Germany', 'Ghana', 'Gibraltar', 'Greece', 'Greenland',
+                          'Grenada', 'Guadeloupe', 'Guam', 'Guatemala', 'Guinea', 'Guinea-Bissau', 'Guyana'],
+                    'H': ['Haiti', 'Heard/McDon.Isl', 'Honduras', 'Hong Kong', 'Hungary'],
+                    'I': ['Iceland', 'India', 'Indonesia', 'Iran', 'Iraq', 'Ireland', 'Israel', 'Italy'],
+                    'J': ['Jamaica', 'Japan', 'Jordan'],
+                    'K': ['Kazakhstan', 'Kenya', 'Kiribati', 'Kuwait', 'Kyrgyzstan'],
+                    'L': ['Laos', 'Latvia', 'Lebanon', 'Lesotho', 'Liberia', 'Libya', 'Liechtenstein', 'Lithuania',
+                          'Luxembourg'],
+                    'M': ['Macau', 'Macedonia', 'Madagascar', 'Malawi', 'Malaysia', 'Maldives', 'Mali', 'Malta',
+                          'Marshall Islnds', 'Martinique', 'Mauretania', 'Mauritius', 'Mayotte', 'Mexico', 'Micronesia',
+                          'Minor Outl.Isl.', 'Moldova', 'Monaco', 'Mongolia', 'Montenegro', 'Montserrat', 'Morocco',
+                          'Mozambique'],
+                    'N': ['N.Mariana Islnd', 'Namibia', 'NATO', 'Nauru', 'Nepal', 'Netherlands', 'New Caledonia',
+                          'New Zealand', 'Nicaragua', 'Niger', 'Nigeria', 'Niue', 'Norfolk Islands', 'North Korea',
+                          'Norway'],
+                    'O': ['Oman', 'Orange'],
+                    'P': ['Pakistan', 'Palau', 'Palestine', 'Panama', 'Pap. New Guinea', 'Paraguay', 'Peru',
+                          'Philippines', 'Pitcairn Islnds', 'Poland', 'Portugal', 'Puerto Rico'],
+                    'Q': ['Qatar'],
+                    'R': ['Rep.of Congo', 'Reunion', 'Romania', 'Russian Fed.', 'Rwanda'],
+                    'S': ['S. Sandwich Ins', 'S.Tome,Principe', 'Saint Helena', 'Samoa', 'Samoa, America', 'San Marino',
+                          'Saudi Arabia', 'Senegal', 'Serbia', 'Serbia/Monten.', 'Seychelles', 'Sierra Leone',
+                          'Singapore', 'Slovakia', 'Slovenia', 'Solomon Islands', 'Somalia', 'South Africa',
+                          'South Korea', 'Spain', 'Sri Lanka', 'St Kitts&Nevis', 'St. Lucia', 'St. Vincent',
+                          'St.Pier,Miquel.', 'Sudan', 'Suriname', 'Svalbard', 'Swaziland', 'Sweden', 'Switzerland',
+                          'Syria'],
+                    'T': ['Taiwan', 'Tajikistan', 'Tanzania', 'Thailand', 'Togo', 'Tokelau Islands', 'Tonga',
+                          'Trinidad,Tobago', 'Tunisia', 'Turkey', 'Turkmenistan', 'Turksh Caicosin', 'Tuvalu'],
+                    'U': ['Uganda', 'Ukraine', 'United Kingdom', 'United Nations', 'Uruguay', 'USA', 'Utd.Arab Emir.',
+                          'Uzbekistan'], 'V': ['Vanuatu', 'Vatican City', 'Venezuela', 'Vietnam'],
+                    'W': ['Wallis,Futuna', 'West Sahara'],
+                    'X': [], 'Y': ['Yemen'],
+                    'Z': ['Zambia', 'Zimbabwe']}
+    print('----------------------')
+    for key, val in country_dict.items():
+        if val:
+            print(key)
+            print(*val)
+    print('----------------------')
+    # -----------------------------------------------------------------------------------------------------------------
+    # enter your country name
     selected_country = input('Enter the country name: ')
     country = driver.find_element(By.XPATH,
                                   '//input[contains(@placeholder, "Please select a country")]')
@@ -124,14 +179,6 @@ def create_new_quote():
     country.send_keys(Keys.ENTER)
     time.sleep(10)
     driver.implicitly_wait(5)
-
-
-    # field = driver.find_elements(By.XPATH, '//div[contains(@class, "x-form-trigger x-form-trigger-default x-form-arrow-trigger x-form-arrow-trigger-default")]')
-    #
-    # dropdown_list = driver.find_elements(By.XPATH,
-    #                                      '//div[contains(@id, "dropdownautocompletelocalstore-")]')
-
-    # -----------------------------------------------------------------------------------------------------------------
     # # create_quote_button
     print('Press create quote button.')
     create_quote_button = driver.find_elements(By.XPATH,
