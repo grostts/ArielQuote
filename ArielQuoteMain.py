@@ -78,13 +78,21 @@ def create_new_quote():
     time.sleep(3)
     # -----------------------------------------------------------------------------------------------------------------
     # Choose the shipping address
-    print('Choose the shipping address.')
+    print('Choose the shipping address from the list below: ')
     # click the shipping address button, choose the shipping address, click accept button
     select_shipping_address_button = driver.find_elements(By.XPATH,
                                                           '//a[contains(@class, "x-btn x-unselectable x-box-item x-toolbar-item x-btn-blue-toolbar-small")]')
     select_shipping_address_button[1].click()
     driver.implicitly_wait(10)
     time.sleep(3)
+
+    shipping_addres_list = driver.find_elements(By.XPATH,
+                                                '//div[1]/div[3]/div[contains(@class, "x-grid-view x-grid-with-row-lines x-fit-item x-grid-view-default x-unselectable")]//table[contains(@id, "tableview")]')
+    for el in shipping_addres_list:
+        print(f'Company: {el.text.split()[0]}',
+              f'Street Address: {el.text.split()[1]}',
+              f'City: {el.text.split()[2]}',
+              '---------------------------------', sep='\n')
     # -----------------------------------------------------------------------------------------------------------------
     # Find search field
     shipping_company_name = input('Enter a shipping company name: ')
@@ -185,7 +193,7 @@ def create_new_quote():
                                                '//span[contains(@class, "x-btn-inner x-btn-inner-blue-toolbar-small")]')
     create_quote_button[3].click()
     driver.implicitly_wait(50)
-    time.sleep(10)
+    time.sleep(15)
     print('----------------------')
     print()
 
