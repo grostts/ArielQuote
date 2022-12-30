@@ -199,6 +199,9 @@ def create_new_quote():
 
 
 def working_with_new_quote():
+    #get quote number
+    quote_number = driver.find_element(By.XPATH, '//div[contains(@class, "x-panel x-panel-default")]//div[contains(@class, "x-title-text x-title-text-default x-title-item")]').text.split()[1]
+
     # quote menu button
     print('Working with new quote...')
     print('----------------------')
@@ -263,6 +266,12 @@ def working_with_new_quote():
     driver.implicitly_wait(10)
     time.sleep(10)
 
+    try:
+        attention = driver.find_element(By.XPATH, '//div[contains(text(), "Attention")]')
+        attention.click()
+        print(f'You need to manually edit quota {quote_number}.')
+    except:
+        print(f'New quote successfully downloaded!!! See quote: {quote_number}')
 
 try:
     login_ariel(ariel_login, ariel_password)
@@ -271,7 +280,6 @@ try:
 
     working_with_new_quote()
 
-    print('New quote successfully downloaded!!!')
 
 except Exception as ex:
     print(ex)
